@@ -1,0 +1,7 @@
+# Archivos generados por la compilación
+/Instalable/dist/
+/Instalable/build/
+
+# Ejecutables de FFmpeg incluidos en la distribución
+/Instalable/bin/ffmpeg/ffmpeg.exe
+/Instalable/bin/ffmpeg/ffprobe.exe

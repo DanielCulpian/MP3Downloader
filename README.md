@@ -20,6 +20,7 @@ The project includes a lightweight command-line version and a graphical version 
 - [How to Run](#how-to-run)
   - [Console Version](#console-version)
   - [Graphical Version](#graphical-version)
+- [Windows Installer](#windows-installer)
 - [Download Location](#download-location)
 - [Troubleshooting](#troubleshooting)
 - [Disclaimer](#disclaimer)
@@ -71,6 +72,8 @@ Before running either version, make sure you have installed the following softwa
 On Windows, spotDL may also require the Microsoft Visual C++ Redistributable. Check the [official spotDL installation guide](https://spotdl.readthedocs.io/en/latest/installation/) if you encounter compatibility issues.
 
 **Important:** An internet connection is required. spotDL uses Spotify metadata and searches for matching audio on YouTube. A Spotify Premium subscription is not normally required for this workflow.
+
+---
 
 ## Installation Guide
 
@@ -132,7 +135,7 @@ This option installs FFmpeg for spotDL's use. It may be sufficient without confi
 **Windows**
 
 1. Open the [official FFmpeg download page](https://ffmpeg.org/download.html).
-2. Follow one of the links to a Windows build.
+2. Follow one of the links to a Windows build, such as [Gyan's Windows builds](https://www.gyan.dev/ffmpeg/builds/) or [BtbN's FFmpeg builds](https://github.com/BtbN/FFmpeg-Builds/releases).
 3. Download and extract the archive.
 4. Add the folder containing `ffmpeg.exe` to your system's `PATH`.
 5. Close and reopen the terminal.
@@ -171,8 +174,6 @@ ffmpeg -version
 ```
 
 If the command displays version information, FFmpeg is available from the terminal.
-
-For additional information, visit the [official FFmpeg website](https://ffmpeg.org/download.html).
 
 ### 3. Install spotDL
 
@@ -246,14 +247,13 @@ Your project structure should look similar to this:
 MP3Downloader/
 ├── MP3DownloaderV1.py
 ├── MP3DownloaderV2.py
+├── Instalable/
 └── README.md
 ```
 
-You can run either version independently.
+You can run either Python version independently.
 
 ### Console Version
-
-Run the following command:
 
 **Windows:**
 
@@ -283,8 +283,6 @@ Follow the prompts in the terminal to start a download or exit the application.
 
 ### Graphical Version
 
-Run the following command:
-
 **Windows:**
 
 ```powershell
@@ -305,6 +303,32 @@ The application window will open.
 4. Click **Open Folder** to access your downloaded files.
 
 The graphical version runs the download process in a background thread, so the interface remains responsive while spotDL is working.
+
+---
+
+## Windows Installer
+
+The repository includes an `Instalable/` folder intended to hold the files needed for the Windows installation package. **Some files are not included in the repository yet**, so the folder may be incomplete.
+
+### Missing FFmpeg files
+
+The following files need to be added to `Instalable/bin/ffmpeg/` if you want to use this bundled FFmpeg layout:
+
+- `ffmpeg.exe`
+- `ffprobe.exe`
+
+You can obtain Windows FFmpeg builds from either of these sources:
+
+- [Gyan's FFmpeg Windows builds](https://www.gyan.dev/ffmpeg/builds/)
+- [BtbN's FFmpeg builds on GitHub](https://github.com/BtbN/FFmpeg-Builds/releases)
+
+Download and extract a suitable Windows build, then place the required executables in `Instalable/bin/ffmpeg/`, matching the folder structure expected by the application/installer.
+
+These executable files are not committed to this repository because GitHub rejects individual files larger than 100 MB when pushed using regular Git.
+
+### Generating the installer
+
+The `MP3Downloader-Setup.exe` installer can be generated using [Inno Setup](https://jrsoftware.org/isinfo.php). Open the project's Inno Setup script (`.iss`) in Inno Setup and compile it after ensuring that the required files are present.
 
 ---
 
